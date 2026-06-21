@@ -175,14 +175,31 @@
 
     .work-thumb {
       width: 100%;
-      height: 160px;
-      background: linear-gradient(135deg, #1a2a0a 0%, #0d1a05 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 56px;
       border-bottom: 1px solid var(--border);
+      overflow: hidden;
     }
+    .work-thumb img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+    .work-screenshots {
+      display: flex;
+      gap: 2px;
+      margin-top: 2px;
+    }
+    .work-screenshots img {
+      flex: 1;
+      height: 80px;
+      object-fit: cover;
+      object-position: top;
+      opacity: 0.75;
+      transition: opacity 0.2s;
+      cursor: pointer;
+    }
+    .work-screenshots img:hover { opacity: 1; }
 
     .work-body { padding: 20px; }
     .work-tag {
@@ -323,7 +340,13 @@
   <h2 class="section-title">Our Games</h2>
   <div class="works-grid">
     <div class="work-card">
-      <div class="work-thumb">⚙️</div>
+      <div class="work-thumb">
+        <img src="img/gf-title.png" alt="Gesture &amp; Factory title screen">
+        <div class="work-screenshots">
+          <img src="img/gf-factory.png" alt="Factory automation">
+          <img src="img/gf-storage.png" alt="Storage screen">
+        </div>
+      </div>
       <div class="work-body">
         <span class="work-tag">BROWSER GAME</span>
         <div class="work-title">Gesture &amp; Factory</div>
