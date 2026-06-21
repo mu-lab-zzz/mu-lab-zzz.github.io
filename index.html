@@ -193,9 +193,40 @@
       display: block;
       opacity: 0.85;
       transition: opacity 0.2s;
-      cursor: pointer;
+      cursor: zoom-in;
     }
     .work-gallery img:hover { opacity: 1; }
+
+    /* Lightbox */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9000;
+      background: rgba(0,0,0,0.92);
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+    #lightbox.open { display: flex; }
+    #lightbox img {
+      max-width: 92vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 0 60px rgba(0,0,0,0.8);
+    }
+    #lightbox-close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-size: 28px;
+      color: #fff;
+      cursor: pointer;
+      line-height: 1;
+      opacity: 0.7;
+    }
+    #lightbox-close:hover { opacity: 1; }
 
     .work-body { padding: 20px; }
     .work-tag {
@@ -336,9 +367,9 @@
   <div class="works-grid">
     <div class="work-card">
       <div class="work-gallery">
-        <img src="img/gf-title.png" alt="Gesture &amp; Factory title screen">
-        <img src="img/gf-factory.png" alt="Factory automation">
-        <img src="img/gf-storage.png" alt="Storage screen">
+        <img src="img/gf-title.png" alt="Gesture &amp; Factory title screen" onclick="openLightbox(this.src)">
+        <img src="img/gf-factory.png" alt="Factory automation" onclick="openLightbox(this.src)">
+        <img src="img/gf-storage.png" alt="Storage screen" onclick="openLightbox(this.src)">
       </div>
       <div class="work-body">
         <span class="work-tag">BROWSER GAME</span>
@@ -431,6 +462,23 @@
 <footer>
   <p>© 2024 M.U Labs. All rights reserved.</p>
 </footer>
+
+<!-- Lightbox -->
+<div id="lightbox" onclick="closeLightbox()">
+  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
 
 </body>
 </html>
